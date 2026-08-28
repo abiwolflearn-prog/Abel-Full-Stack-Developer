@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --paper: #F7F7F5;
+    --paper-card: #FFFFFF;
+    --forest: #1A3C2B;
+    --forest-dark: #12281D;
+    --forest-light: #2A5A41;
+    --grid: rgba(58, 58, 56, 0.2);
+    --grid-strong: rgba(58, 58, 56, 0.4);
+    --coral: #FF8C69;
+    --mint: #9EFFBF;
+    --gold: #F4D35E;
+    --charcoal: #3A3A38;
+  }
+
+  .dark {
+    --paper: #0C120E;
+    --paper-card: #121C16;
+    --forest: #E5EFE9;
+    --forest-dark: #070B09;
+    --forest-light: #9EFFBF;
+    --grid: rgba(255, 255, 255, 0.12);
+    --grid-strong: rgba(255, 255, 255, 0.25);
+    --coral: #FF8C69;
+    --mint: #9EFFBF;
+    --gold: #F4D35E;
+    --charcoal: #9FB5A9;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--forest);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Space Grotesk', -apple-system, sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  code, pre, .font-mono, .mono-label, .tech-tag {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Seamless Mosaic SVG Background Pattern */
+.bg-mosaic {
+  background-color: #F7F7F5;
+  background-image: 
+    linear-gradient(to right, rgba(58, 58, 56, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(58, 58, 56, 0.08) 1px, transparent 1px),
+    linear-gradient(to right, rgba(58, 58, 56, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(58, 58, 56, 0.15) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 128px 128px, 128px 128px;
+}
+
+.dark .bg-mosaic {
+  background-color: #0C120E;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px, 128px 128px, 128px 128px;
+}
+
+/* Corner L-Markers */
+.corner-marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--forest);
+  pointer-events: none;
+  z-index: 10;
+}
+.cm-tl {
+  top: -1px;
+  left: -1px;
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+.cm-tr {
+  top: -1px;
+  right: -1px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+}
+.cm-bl {
+  bottom: -1px;
+  left: -1px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+.cm-br {
+  bottom: -1px;
+  right: -1px;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+}
+
+/* Image Luminosity Effect with hover transition */
+.img-luminosity {
+  filter: grayscale(100%) contrast(1.1);
+  mix-blend-mode: luminosity;
+  opacity: 0.9;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.img-luminosity:hover, .group:hover .img-luminosity {
+  filter: grayscale(0%) contrast(1);
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+/* Custom Orbit Animations */
+@keyframes orbit-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-ccw {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+.animate-orbit-cw {
+  animation: orbit-cw 24s linear infinite;
+}
+
+.animate-orbit-ccw {
+  animation: orbit-ccw 18s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar for technical feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F7F5;
+  border-left: 1px solid rgba(58, 58, 56, 0.15);
+}
+::-webkit-scrollbar-thumb {
+  background: #1A3C2B;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0C120E;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #2D523E;
+}
+
+/* Two-Row Opposing Marquee Animations */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 38s linear infinite;
+  will-change: transform;
+}
+
+.pause-on-hover:hover .animate-marquee-left,
+.pause-on-hover:hover .animate-marquee-right,
+.pause-on-hover:focus-within .animate-marquee-left,
+.pause-on-hover:focus-within .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* Edge Fade Mask (Works over any background, no overlay gradient dependency) */
+.mask-edge-fade {
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 8%, rgba(0, 0, 0, 1) 92%, transparent 100%);
+}
+
+@media (max-width: 640px) {
+  .mask-edge-fade {
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 4%, rgba(0, 0, 0, 1) 96%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 1) 4%, rgba(0, 0, 0, 1) 96%, transparent 100%);
+  }
+}
+
+/* Reduced Motion Fallback (Switches to readable plain grid, hides duplicates) */
+@media (prefers-reduced-motion: reduce) {
+  .mask-edge-fade {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
+    transform: none !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .reduced-motion-duplicate {
+    display: none !important;
+  }
+}
